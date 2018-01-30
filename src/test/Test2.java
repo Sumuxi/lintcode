@@ -6,9 +6,12 @@ public class Test2 {
 		// TODO Auto-generated method stub
 		int result = Integer.MAX_VALUE;
 		
-		System.out.println((result+1)/2);
-		System.out.println((result+1)>>1);
-		System.out.println((result+1)>>>1);
+		System.out.println(0%3);
+		System.out.println(-1%3);
+		System.out.println(-2%3);
+		System.out.println(-3%3);
+		System.out.println(-4%3);
+		System.out.println(-5%3);
 	}
 
 }
