@@ -1,19 +1,21 @@
-package com.lintcode167;
+package com.lintcode221;
 
-/**167. 链表求和
+/**221. 链表求和 II
  * 挑战：
  * @author sumuxi
  *
  */
 public class Solution {
     
-	/**加法的基本性质和原理
-     * @param l1: the first list
-     * @param l2: the second list
-     * @return: the sum list of l1 and l2 
+	/**
+     * @param l1: The first list.
+     * @param l2: The second list.
+     * @return: the sum list of l1 and l2.
      */
-	public ListNode addLists(ListNode l1, ListNode l2) {
-        ListNode result=null, s=null;
+    public ListNode addLists2(ListNode l1, ListNode l2) {
+    	l1 = reverseList(l1);
+    	l2 = reverseList(l2);
+    	ListNode result=null;
         int p = 0;//低位向本位的进位
         int sum;//本位和
         while(l1!=null||l2!=null){
@@ -32,17 +34,29 @@ public class Solution {
         	}else {
 				p = 0;
 			}
-        	if(result==null){
-        		result = new ListNode(sum);
-        		s = result;
-        	}else {
-        		s.next = new ListNode(sum);
-        		s = s.next;
-			}
+        	
+        	ListNode t = result;
+        	result = new ListNode(sum);
+        	result.next = t;
         }
         if(p>0){
-            s.next = new ListNode(p);
+        	ListNode t = result;
+        	result = new ListNode(p);
+        	result.next = t;
         }
+        return result;
+    }
+    
+    /*迭代版本，非递归
+     */
+    public ListNode reverseList(ListNode head) {
+        ListNode result = null, next = null;
+        while (head!=null) {
+			next = head.next;
+			head.next = result;
+			result = head;
+			head = next;
+		}
         return result;
     }
     

@@ -4,14 +4,18 @@ public class Test2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int result = Integer.MAX_VALUE;
+		String[] s = "123456".split("\\.");
+		for (int i = 0; i < s.length; i++) {
+			System.out.println(s[i]);
+		}
 		
-		System.out.println(0%3);
-		System.out.println(-1%3);
-		System.out.println(-2%3);
-		System.out.println(-3%3);
-		System.out.println(-4%3);
-		System.out.println(-5%3);
+		System.out.println("12345".endsWith("5"));
+		
+//		System.out.println(Integer.toBinaryString(16));
+//		System.out.println(Double.toHexString(Double.parseDouble("0.5")));
+		System.out.println((0.5)*2);
+//		Double d = Double.parseDouble("2.5");
+//		System.out.println(d.longValue());
 	}
 
 }

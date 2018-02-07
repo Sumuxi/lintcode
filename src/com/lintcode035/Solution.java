@@ -13,7 +13,19 @@ public class Solution {
 //		new Solution().reverse(head);
 		System.out.println(new Solution().reverse(head));
 	}
-
+	
+	//迭代版本，非递归
+	public ListNode reverse1(ListNode head) {
+        ListNode result = null, next = null;
+        while (head!=null) {
+			next = head.next;
+			head.next = result;
+			result = head;
+			head = next;
+		}
+        return result;
+    }
+	
 	ListNode result = null;
 	
 	/**java的引用和函数传值很怪异,尤其是对于局部变量, 据说java函数传递的都是引用的副本
@@ -27,7 +39,7 @@ public class Solution {
     	return result;
     }
 
-    private void reverseList(ListNode head) {
+    public void reverseList(ListNode head) {
 		if (head == null) {
 			return;
 		}
@@ -38,7 +50,7 @@ public class Solution {
 		reverseList(head);
 	}
     
-    private void reverseList1(ListNode head) {
+    public void reverseList1(ListNode head) {
 		if (head == null) {
 			return;
 		}
