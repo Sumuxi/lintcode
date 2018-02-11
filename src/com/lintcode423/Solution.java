@@ -14,8 +14,39 @@ public class Solution {
     public boolean isValidParentheses(String s) {
         java.util.Stack<Character> stack = new java.util.Stack<Character>();
         for (int i = 0; i < s.length(); i++) {
-//			if(stack.size()==0||stack.peek().charValue()==s.charAt(i))
+        	char ch = s.charAt(i);
+        	switch (ch) {
+			case '(':
+			case '[':
+			case '{':
+				stack.push(ch);
+				break;
+			case ')':
+				if(!stack.isEmpty()&&stack.peek()=='('){
+					stack.pop();
+					break;
+				}
+				else
+					return false;
+			case ']':
+				if(!stack.isEmpty()&&stack.peek()=='['){
+					stack.pop();
+					break;
+				}
+				else
+					return false;
+			case '}':
+				if(!stack.isEmpty()&&stack.peek()=='{'){
+					stack.pop();
+					break;
+				}
+				else
+					return false;
+			}
 		}
+        if(stack.isEmpty())
+        	return true;
+        return false;
     }
 	
 }
