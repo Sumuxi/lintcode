@@ -64,4 +64,20 @@ public class Solution {
     	return A.length+1;
     }
 	
+	//如果仅有一个重复的数，且只重复一次，则下面的方法也可行
+    /**机智的利用异或的性质，贼骚
+     * @param nums: an array containing n + 1 integers which is between 1 and n
+     * @return: the duplicate one
+     */
+    public int findMissing2(int[] nums) {
+        int x=0,y=0;
+        for (int i = 0; i < nums.length; i++) {
+			x ^= nums[i];
+		}
+        for (int i = 0; i<=nums.length; i++) {
+			y ^= i;
+		}
+        return x^y;
+    }
+	
 }

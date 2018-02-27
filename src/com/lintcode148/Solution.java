@@ -9,7 +9,7 @@ package com.lintcode148;
  */
 public class Solution {
 	
-	/**
+	/**两根指针遍历解决
      * @param nums: A list of integer which is 0, 1 or 2 
      * @return: nothing
      */
@@ -47,6 +47,41 @@ public class Solution {
 			i++;
         }
     }
-
+	
+	/**其实就是利用快速排序的划分思想，选定1为枢纽元
+     * @param nums: A list of integer which is 0, 1 or 2 
+     * @return: nothing
+     */
+    public void sortColors1(int[] nums) {
+        if(nums==null||nums.length<=1)
+        	return;
+        
+        int index0 = 0, index2 = nums.length-1;
+        int i = 0;
+        while(i<=index2){
+        	if(nums[i]<1){
+        		if(i>index0){
+        			int t = nums[index0];
+    				nums[index0++] = nums[i];
+    				nums[i] = t;
+        		}else{
+        			i++;
+        			index0++;
+        		}
+			}else if(nums[i]>1){
+				if(i<index2){
+					int t = nums[index2];
+					nums[index2--] = nums[i];
+					nums[i] = t;
+				}else{
+					i++;
+					index2--;
+				}
+			}else{//nums[i]==1
+				i++;
+			}
+        }
+        
+    }
     
 }
