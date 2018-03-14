@@ -10,7 +10,7 @@ public class Solution {
 		
 	}
 	
-	/**
+	/**JDK自带KMP算法，O(n)
      * @param source: source string to be scanned.
      * @param target: target string containing the sequence of characters to match
      * @return: a index to the first occurrence of target in source, or -1  if target is not part of source.
@@ -23,7 +23,7 @@ public class Solution {
         return source.indexOf(target);
     }
     
-    /**蛮力方法，O(n2);KMP->O(n)
+    /**蛮力方法，O(n2);
      * @param source
      * @param target
      * @return

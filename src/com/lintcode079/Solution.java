@@ -11,12 +11,41 @@ public class Solution {
 		
 	}
 	
-	/**思路简单，把短的字符串去长的字符串里面逐次比对
+	/**动态规划, O(m x n) time, O(n) memory
      * @param A: A string
      * @param B: A string
      * @return: the length of the longest common substring.
      */
     public int longestCommonSubstring(String A, String B) {
+    	int n = B.length()+1;
+        int[] c1 = new int[n];
+        int[] c2 = new int[n];
+        int max=0;
+        for (int i=0; i<A.length(); i++) {
+			for (int j=1; j<n; j++) {
+				if(A.charAt(i)==B.charAt(j-1)){
+					c2[j] = c1[j-1]+1;
+					if(c2[j]>max){
+						max=c2[j];
+					}
+				}
+				else{
+					c2[j] = 0;
+				}
+			}
+			int[] temp = c1;
+			c1 = c2;
+			c2 = temp;
+		}
+        return max;
+    }
+	
+	/**思路简单，把短的字符串去长的字符串里面逐次比对
+     * @param A: A string
+     * @param B: A string
+     * @return: the length of the longest common substring.
+     */
+    public int longestCommonSubstring1(String A, String B) {
         if(A==""||B=="")
         	return 0;
         
@@ -50,7 +79,5 @@ public class Solution {
 		}
         return max1;
     }
-    
-   
 
 }

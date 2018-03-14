@@ -1,7 +1,7 @@
 package com.lintcode012;
 
 /**12. 带最小值操作的栈 ,AC
- * 将栈值都存为与当前最小值的差,这样不在需要辅助栈,但增加了一些计算
+ * 
  * @author sumuxi
  *
  */
@@ -10,6 +10,10 @@ public class MinStack4 {
 	public static void main(String[] args) {
 		
 	}
+	
+	/*
+	 * 思路： 将栈值都存为与当前最小值的差,这样不在需要辅助栈,但增加了一些计算
+	 */
 	
 	java.util.ArrayList<Integer> data;//数值栈
 	int min;

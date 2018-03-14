@@ -15,6 +15,10 @@ public class Solution {
 		}
 	}
 	
+	/* 归并排序，分而治之，治所用的思想
+	 * 
+	 */
+	
     /** 我写的二路归并排序
      * @param A sorted integer array A
      * @param B sorted integer array B

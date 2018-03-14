@@ -19,13 +19,40 @@ public class Solution {
 		System.out.println(s.searchRange(root, 1, 8));
 	}
 	
-    /**
+	/*BST中序遍历的结果是升序排序的，这里可以在中序遍历的同时判断值是否在区间内
+		 */
+	
+	List<Integer> result = new java.util.ArrayList<Integer>();
+	
+	/**
      * @param root: param root: The root of the binary search tree
      * @param k1: An integer
      * @param k2: An integer
      * @return: return: Return all keys that k1<=key<=k2 in ascending order
      */
     public List<Integer> searchRange(TreeNode root, int k1, int k2) {
+        if(root==null)
+        	return result;
+        
+    	if(root.val<k1){
+    		searchRange(root.right, k1, k2);
+    	}else if (root.val>k2) {
+			searchRange(root.left, k1, k2);
+		}else{
+			searchRange(root.left, k1, k2);
+			result.add(root.val);
+			searchRange(root.right, k1, k2);
+		}
+    	return result;
+    }
+	
+    /**
+     * @param root: param root: The root of the binary search tree
+     * @param k1: An integer
+     * @param k2: An integer
+     * @return: return: Return all keys that k1<=key<=k2 in ascending order
+     */
+    public List<Integer> searchRange1(TreeNode root, int k1, int k2) {
         // write your code here
     	java.util.ArrayList<Integer> list = new java.util.ArrayList<Integer>();
     	search(list, root, k1, k2);

@@ -1,19 +1,52 @@
 package com.lintcode005;
 
-/**
- * 5. 第k大元素 ,AC
+/**5. 第k大元素 ,AC
  * 
  * @author sumuxi
  *
  */
 public class Solution {
 
-	public static void main(String[] args) {
-		int[] nums = new int[] {9,3,2,4,8 };
-		System.out.println(kthLargestElement( 3, nums));
-//		for (int i = 0; i < nums.length; i++) {
-//			System.out.print(nums[i] + " ");
-//		}
+	/*
+	 * 思路：算法导论上快排的思想，准确说应该是其中的选择划分的思想，可以实现O(n)的时间复杂度
+	 */
+	
+	/**
+	 * @param k
+	 * @param nums
+	 * @return
+	 */
+	public static int kthLargestElement3(int k, int[] nums) {
+		int left = 0;
+		int right = nums.length-1;
+		int i = partition(nums, left, right);
+		k--;
+		while (i!=k) {
+			if(i>k){
+				right = i-1;//减小右边界
+				i = partition(nums, left, right);
+			}else {//i<k
+				left = i+1;//增大左边界
+				i = partition(nums, left, right);
+			}
+		}
+		return nums[i];
+	}
+
+	private static int partition(int[] nums, int left, int right) {
+		int pivot = nums[right];
+		int i = left;
+		//把比枢纽大的值全放在左边
+		for (int j=left; j<right; j++) {
+			if(nums[j]>=pivot){
+				int t = nums[i];
+				nums[i++] = nums[j];
+				nums[j] = t;
+			}
+		}
+		nums[right] = nums[i];
+		nums[i] = pivot;
+		return i;
 	}
 
 	/**
@@ -147,44 +180,6 @@ public class Solution {
 			heap[smallest] = t;
 			minHeapify(heap, smallest);
 		}
-	}
-	
-	/**快排的思想，准确说应该是划分的思想
-	 * @param k
-	 * @param nums
-	 * @return
-	 */
-	public static int kthLargestElement3(int k, int[] nums) {
-		int left = 0;
-		int right = nums.length-1;
-		int i = partition(nums, left, right);
-		k--;
-		while (i!=k) {
-			if(i>k){
-				right = i-1;//减小右边界
-				i = partition(nums, left, right);
-			}else {//i<k
-				left = i+1;//增大左边界
-				i = partition(nums, left, right);
-			}
-		}
-		return nums[i];
-	}
-
-	private static int partition(int[] nums, int left, int right) {
-		int pivot = nums[right];
-		int i = left;
-		//把比枢纽大的值全放在左边
-		for (int j=left; j<right; j++) {
-			if(nums[j]>=pivot){
-				int t = nums[i];
-				nums[i++] = nums[j];
-				nums[j] = t;
-			}
-		}
-		nums[right] = nums[i];
-		nums[i] = pivot;
-		return i;
 	}
 
 }

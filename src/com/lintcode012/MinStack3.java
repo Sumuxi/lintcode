@@ -1,9 +1,7 @@
 package com.lintcode012;
 
 /**12. 带最小值操作的栈 ,AC
- * 使用两个栈，一个存数值的栈和一个存当前最小值的辅助栈
- * 		每次数值栈压栈时，辅助栈压入当前最小值
- * 		每次数值栈出栈时，辅助栈弹出当前最小值
+ * 
  * @author sumuxi
  *
  */
@@ -13,11 +11,17 @@ public class MinStack3 {
 		
 	}
 	
-	java.util.ArrayList<Integer> data;//数值栈
 	/*
-	 *增加一个辅助栈（用于存放数据栈之前最小的元素与新压入栈元素之间的较小值） 
+	 * 思路：使用两个栈，一个存数值的栈和一个存当前最小值的辅助栈,
+	 * 		每次数值栈压栈时，辅助栈压入当前最小值,
+	 * 		每次数值栈出栈时，辅助栈弹出当前最小值
 	 */
-	java.util.ArrayList<Integer> mins;//辅助栈
+	
+	java.util.ArrayList<Integer> data;// 数值栈
+	/*
+	 * 增加一个辅助栈（用于存放数据栈之前最小的元素与新压入栈元素之间的较小值）
+	 */
+	java.util.ArrayList<Integer> mins;// 辅助栈
 	public MinStack3() {
         // do intialization if necessary
 		data = new java.util.ArrayList<Integer>();

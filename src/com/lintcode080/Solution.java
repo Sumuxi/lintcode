@@ -26,40 +26,45 @@ public class Solution {
         return nums[(nums.length-1)/2];
     }
 	
-	/** WA 答案不对
+    /** 快排划分
      * @param : A list of integers
      * @return: An integer denotes the middle number of the array
      */
     public int median1(int[] nums) {
-        // write your code here
-        if(nums.length==1){
+    	assert nums.length>0;
+    	if(nums.length==1){
             return nums[0];
         }
-        int mid = (nums.length-1)/2;
-        for(int i=0,j=nums.length-1; i<j; i++,j--){
-            if(nums[i]>nums[mid]&&nums[j]>nums[mid]){
-                if(nums[i]<nums[j]){
-                    int temp = nums[mid];
-                    nums[mid] = nums[i];
-                    nums[i] = temp;
-                }else{
-                    int temp = nums[mid];
-                    nums[mid] = nums[j];
-                    nums[j] = temp;
-                }
-            }else if(nums[i]<nums[mid]&&nums[j]<nums[mid]){
-                if(nums[i]>nums[j]){
-                    int temp = nums[mid];
-                    nums[mid] = nums[i];
-                    nums[i] = temp;
-                }else{
-                    int temp = nums[mid];
-                    nums[mid] = nums[j];
-                    nums[j] = temp;
-                }
-            }
-        }
-        return nums[mid];
+    	int left = 0;
+		int right = nums.length-1;
+		int i = partition(nums, left, right);
+		int k=right>>>1;
+		while (i!=k) {
+			if(i>k){
+				right = i-1;//减小右边界
+				i = partition(nums, left, right);
+			}else {//i<k
+				left = i+1;//增大左边界
+				i = partition(nums, left, right);
+			}
+		}
+		return nums[k];
     }
 
+	private int partition(int[] nums, int left, int right) {
+		int pivot = nums[right];
+		int i = left;
+		//把比枢纽小的值全放在左边
+		for (int j=left; j<right; j++) {
+			if(nums[j]<=pivot){
+				int t = nums[i];
+				nums[i++] = nums[j];
+				nums[j] = t;
+			}
+		}
+		nums[right] = nums[i];
+		nums[i] = pivot;
+		return i;
+	}
+    
 }

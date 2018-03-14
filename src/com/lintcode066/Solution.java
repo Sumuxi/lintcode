@@ -18,7 +18,7 @@ public class Solution {
 		System.out.println(new Solution().preorderTraversal(root));
 	}
 	
-	/**非递归方法实现，比递归实现要慢
+	/**非递归方法实现
      * @param root: A Tree
      * @return: Preorder in ArrayList which contains node values.
      */

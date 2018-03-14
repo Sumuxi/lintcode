@@ -35,7 +35,7 @@ public class Solution {
      * @param root: A Tree
      * @return: Preorder in ArrayList which contains node values.
      */
-    public List<Integer> postorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal2(TreeNode root) {
         // write your code here
         java.util.Stack<Node> stack = new java.util.Stack<Node>();
         List<Integer> result = new java.util.ArrayList<Integer>();
@@ -85,6 +85,38 @@ public class Solution {
 		travelTree(result, node.right);//右
 		result.add(node.val);//根
 	}
+    
+    /**二叉树后序遍历非递归方法实现
+     * @param root: A Tree
+     * @return: Preorder in ArrayList which contains node values.
+     */
+    public List<Integer> postorderTraversal(TreeNode root) {
+        java.util.Stack<TreeNode> stack = new java.util.Stack<TreeNode>();
+        List<Integer> result = new java.util.ArrayList<Integer>();
+        
+        if(root==null)
+        	return result;
+        
+        TreeNode cur = root;//当前结点
+        TreeNode pre = null;//记录之前访问的结点
+        while(cur!=null||!stack.isEmpty()){
+        	while(cur!=null){//一路走到左下角
+        		stack.push(cur);
+        		cur = cur.left;
+        	}
+        	//此时cur已为null,需要考虑是否输出栈顶元素
+        	cur = stack.peek();
+        	if(cur.right==null||cur.right==pre){//右子树为空或者已访问，输出当前节点
+        		result.add(cur.val);
+        		pre = cur;
+        		stack.pop();
+        		cur = null;
+        	}else {//右子树未访问，访问子树的右子树 
+				cur = cur.right;
+			}
+        }
+        return result;
+    }
 
 }
 
